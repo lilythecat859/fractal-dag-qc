@@ -1,0 +1,42 @@
+[package]
+name = "fractal-dag-qc"
+version = "0.1.0"
+authors = ["CAN <lilythecat859>"]
+edition = "2021"
+resolver = "2"
+
+[dependencies]
+# crypto
+pqc_dilithium = "0.7"
+pqc_kyber     = "0.7"
+blake3        = "1.5"
+zk-groth16    = { path = "crates/zk-groth16" }
+# async / net
+tokio         = { version = "1.37", features = ["full"] }
+quinn         = "0.10"
+# serialization
+postcard      = { version = "1.0", features = ["alloc"] }
+serde         = { version = "1.0", features = ["derive"] }
+# wasm
+wasmtime      = "19"
+# metrics
+prometheus    = { version = "0.13", default-features = false }
+# fractal math
+nalgebra      = "0.32"
+# dag
+dashmap       = "5.5"
+# db
+sled          = "0.34"
+# misc
+thiserror     = "1.0"
+hex           = "0.4"
+tracing       = "0.1"
+tracing-subscriber = { version = "0.3", features = ["json"] }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest  = "1.4"
+
+[[bench]]
+name = "tps"
+harness = false
